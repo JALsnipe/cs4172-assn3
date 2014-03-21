@@ -15,5 +15,11 @@ http://www.dannygoodayle.com/2013/03/04/setting-up-your-system-for-unity-android
 spongebob model:
 http://tf3dm.com/3d-model/spongebob-62487.html
 
+Patrick model:
+http://tf3dm.com/3d-model/patrick-736.html
+
 spongebob target:
 http://yooland.org/nickelodeon-coloring-pages-nickelodeon-spongebob-coloring-page-printable-pages/
+
+true ray casting or another approach
+extended tracking
