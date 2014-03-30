@@ -21,5 +21,16 @@ http://tf3dm.com/3d-model/patrick-736.html
 spongebob target:
 http://yooland.org/nickelodeon-coloring-pages-nickelodeon-spongebob-coloring-page-printable-pages/
 
+mario target:
+http://www.siliconera.com/postgallery/?p_gal=75227|0
+
+toolbar target:
+http://creativejs.com/2012/03/augmented-reality/
+
 true ray casting or another approach
 extended tracking
+
+Ideas:
+-rotation: start with single object, and have a second trackable target.  when 2nd "do something" target is tracked, slowl rotate the selected object clockwise (or counter-clockwise).  when object is no longer tracked, stop rotation
+
+-scaling: as the user moves futher from and closer to the object, scale the object based on the distance of the camera from the object.  have min and max scale values.
