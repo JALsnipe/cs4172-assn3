@@ -12,9 +12,9 @@ public class Scale : MonoBehaviour {
 	float objScale;
 
 	//bools
-	bool rotate;
-	bool translate;
-	bool scale;
+	public static bool rotate;
+	public static bool translate = false;
+	public static bool scale = false;
 
 	// Use this for initialization
 	void Start () {
@@ -22,18 +22,18 @@ public class Scale : MonoBehaviour {
 		objectPosition = tracked.transform.position;
 	}
 
-	public void OnTrackingFound()
-	{
-		Renderer[] rendererComponents = GetComponentsInChildren<Renderer>();
-		
-		foreach (Renderer component in rendererComponents) {
-			component.enabled = true;
-		}
-
-		
-//		print("Trackable " + mTrackableBehaviour.TrackableName + " found");
-		print ("Trackable found");
-	}
+//	public void OnTrackingFound()
+//	{
+//		Renderer[] rendererComponents = GetComponentsInChildren<Renderer>();
+//		
+//		foreach (Renderer component in rendererComponents) {
+//			component.enabled = true;
+//		}
+//
+//		
+////		print("Trackable " + mTrackableBehaviour.TrackableName + " found");
+//		print ("Trackable found");
+//	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -72,7 +72,7 @@ public class Scale : MonoBehaviour {
 			tracked.transform.localRotation = Quaternion.AngleAxis (1, Vector3.up) * tracked.transform.localRotation;
 		}
 
-		scale = true;
+//		scale = true;
 
 		// this works
 		if (scale) {
