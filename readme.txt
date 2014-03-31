@@ -30,6 +30,9 @@ http://creativejs.com/2012/03/augmented-reality/
 better tool target (gravel):
 http://www.jpl.nasa.gov/apps/images/3dtarget.pdf
 
+For terminal logging:
+adb logcat -s Unity
+
 true ray casting or another approach
 extended tracking
 
