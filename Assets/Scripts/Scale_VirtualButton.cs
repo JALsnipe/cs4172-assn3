@@ -1,10 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using UnityEngine;
-
-using System.Collections;
-
 // http://forum.unity3d.com/threads/144687-Vuforia-Virtual-Buttons-anyone?p=1567421&viewfull=1#post1567421
 
 public class Scale_VirtualButton : MonoBehaviour, IVirtualButtonEventHandler
