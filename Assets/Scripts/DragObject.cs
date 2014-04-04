@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// https://developer.vuforia.com/resources/dev-guide/unity-drag-ar-object-screen-your-finger
+
 public class DragObject : MonoBehaviour {
 
 	public GUIText message = null;
@@ -32,7 +34,7 @@ public class DragObject : MonoBehaviour {
 				RaycastHit hit = new RaycastHit();
 				if (Physics.Raycast(ray, out hit, 1000)) { //True when Ray intersects
 					//colider. If true, hit contains additional info about where collider was hit
-						pickedObject = hit.transform;
+					pickedObject = hit.transform;
 					lastPlanePoint = planePoint;
 				} else {
 					pickedObject = null;
