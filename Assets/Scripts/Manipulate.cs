@@ -151,7 +151,7 @@ public class Manipulate : MonoBehaviour
 		}
 	}
 	
-	void Select(){
+	void Select (){
 		
 //		meshRenderer.material = Color.green;
 		meshRenderer.material = greenMaterial;
@@ -159,7 +159,7 @@ public class Manipulate : MonoBehaviour
 		Debug.Log("Object selected.");
 	}
 	
-	void Deselect(){
+	void Deselect (){
 		
 //		meshRenderer.material = originalMaterial;
 //		renderer.material = defaultMaterial;
