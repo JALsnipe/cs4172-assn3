@@ -16,8 +16,8 @@ public class Manipulate : MonoBehaviour
 
 	// selection
 	bool isSelected = false;
-	Material originalMaterial;
-	Material redMaterial;
+	Material defaultMaterial;
+	Material greenMaterial;
 	MeshRenderer meshRenderer;
 
 	bool selectMode = false;
@@ -25,15 +25,22 @@ public class Manipulate : MonoBehaviour
 	GameObject baseObject;
 	string obj_name;
 
+	public Material greenMat;
+
+	// rotation
+	public static bool rotate;
+
 	void Start () {
-		obj_name        = this.gameObject.name;
-		baseObject      = GameObject.Find( obj_name );
-		meshRenderer        = baseObject.GetComponent<MeshRenderer>();
-		originalMaterial    = meshRenderer.material;
+		obj_name = this.gameObject.name;
+		baseObject = GameObject.Find( obj_name );
+		meshRenderer = baseObject.GetComponent<MeshRenderer>();
+		defaultMaterial = renderer.material;
 		
-		Color red           = new Color(255.0f,0.0f,0.0f, 0.5f);
-		redMaterial         = new Material(Shader.Find("Transparent/Parallax Specular"));
-		redMaterial.color   = red;
+		Color green  = new Color(0.0f,255.0f,0.0f, 0.5f);
+		greenMaterial = new Material(Shader.Find("Transparent/Diffuse"));
+		greenMaterial.color  = green;
+
+		greenMat = new Material (greenMat);
 	}
 	
 	void Update () {
@@ -78,9 +85,16 @@ public class Manipulate : MonoBehaviour
 			// finished translating, object is selectable again
 			selectMode = true;
 		}
+
+		// Rotation
+		if (rotate) {
+			baseObject.transform.localRotation = Quaternion.AngleAxis (1, Vector3.up) * baseObject.transform.localRotation;
+		}
+
 	}
 
 	void OnMouseDown() {
+		// Selection
 		Debug.Log ("selectMode: " + selectMode);
 		Debug.Log ("translate: " + selectMode);
 		if (translate) {
@@ -110,12 +124,16 @@ public class Manipulate : MonoBehaviour
 	
 	void HighlightRed(){
 		
-		meshRenderer.material = redMaterial;
-		Debug.Log("IT SHOULD BE RED");
+//		meshRenderer.material = Color.green;
+		meshRenderer.material = greenMaterial;
+//		meshRenderer.material = greenMat;
+		Debug.Log("Object selected.");
 	}
 	
 	void RemoveHighlight(){
 		
-		meshRenderer.material = originalMaterial;
+//		meshRenderer.material = originalMaterial;
+//		renderer.material = defaultMaterial;
+		meshRenderer.material = defaultMaterial;
 	}
 }

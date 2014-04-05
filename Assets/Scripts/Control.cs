@@ -44,13 +44,15 @@ public class Control : MonoBehaviour {
 			HideWindow();
 		}
 
-		// Translate
+		// Translation
 		if (translate) {
-			// translation handled by Translation.cs
+			// translation handled by Manipulate.cs
 			Manipulate.translate = true;
 		} else {
 			Manipulate.translate = false;
 		}
+
+		// Rotation handeled in Manipulate.cs
 	}
 
 
@@ -105,6 +107,11 @@ public class Control : MonoBehaviour {
 		
 		if (GUI.Button (new Rect (10, 280, 280, 120), "Rotate", myStyle)) {
 			Debug.Log("Hit Rotate");
+			if(Manipulate.rotate) {
+				Manipulate.rotate = false;
+			} else {
+				Manipulate.rotate = true;
+			}
 		}
 		
 	}
