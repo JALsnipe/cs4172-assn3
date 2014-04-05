@@ -18,6 +18,9 @@ public class Control : MonoBehaviour {
 	private RaycastHit m_RayCastHit;
 	private TouchableObject m_CurrentTouchableObject;
 
+	// scale
+	public static Vector3 cameraPositionAtScaleButtonTap;
+
 	// GUI
 	static public bool render = false;
 	private Rect windowRect = new Rect (1300, 20, 300, 800);
@@ -102,6 +105,14 @@ public class Control : MonoBehaviour {
 		
 		if (GUI.Button (new Rect (10, 150, 280, 120), "Scale", myStyle)) {
 			Debug.Log("Hit Scale");
+			cameraPositionAtScaleButtonTap = gameObject.transform.position;
+			Debug.Log("cameraPosition: " + cameraPositionAtScaleButtonTap);
+
+			if(Manipulate.scale) {
+				Manipulate.scale = false;
+			} else {
+				Manipulate.scale = true;
+			}
 			
 		}
 		

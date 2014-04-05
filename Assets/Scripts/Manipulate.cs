@@ -10,7 +10,7 @@ public class Manipulate : MonoBehaviour
 	private Ray m_Ray;
 	private RaycastHit m_RayCastHit;
 	private TouchableObject m_CurrentMovableObject;
-	private float   m_MovementMultipier = 10f;
+	private float m_MovementMultipier = 10f;
 
 	public static bool translate;
 
@@ -30,6 +30,11 @@ public class Manipulate : MonoBehaviour
 	// rotation
 	public static bool rotate;
 
+	// scale
+	public static bool scale;
+	Vector3 cameraPosition;
+	float objScale;
+
 	void Start () {
 		obj_name = this.gameObject.name;
 		baseObject = GameObject.Find( obj_name );
@@ -48,32 +53,32 @@ public class Manipulate : MonoBehaviour
 			// can no longer toggle selection on object
 			selectMode = false;
 			if (Input.touches.Length == 1) {
-				Debug.Log("In Input.touches.Length == 1");
+//				Debug.Log("In Input.touches.Length == 1");
 				Touch touchedFinger = Input.touches[0];
 				
 				switch (touchedFinger.phase) {
 				case TouchPhase.Began: 
-					Debug.Log("In TouchPhase.Began");
+//					Debug.Log("In TouchPhase.Began");
 					m_Ray = Camera.mainCamera.ScreenPointToRay(touchedFinger.position);
 					if (Physics.Raycast(m_Ray.origin, m_Ray.direction, out m_RayCastHit, Mathf.Infinity)) {
-						Debug.Log("In Physics.Raycast...");
+//						Debug.Log("In Physics.Raycast...");
 						TouchableObject movableObj = m_RayCastHit.collider.gameObject.GetComponent<TouchableObject>();
 						if(movableObj) {
-							Debug.Log("In if(movableObj)");
+//							Debug.Log("In if(movableObj)");
 							m_CurrentMovableObject = movableObj;
 						}
 					}
 					break;
 				case TouchPhase.Moved:
-					Debug.Log("In TouchPhase.Moved");
+//					Debug.Log("In TouchPhase.Moved");
 					if(m_CurrentMovableObject) {
-						Debug.Log("In m_CurrentMovableObject");
+//						Debug.Log("In m_CurrentMovableObject");
 						m_CurrentMovableObject.gameObject.transform.Translate(Time.deltaTime * m_MovementMultipier * new Vector3(touchedFinger.deltaPosition.x, 0, touchedFinger.deltaPosition.y));
 					}
 					break;
 					
 				case TouchPhase.Ended:
-					Debug.Log("In TouchPhase.Ended");
+//					Debug.Log("In TouchPhase.Ended");
 					m_CurrentMovableObject = null;
 					break;
 				
@@ -89,6 +94,30 @@ public class Manipulate : MonoBehaviour
 		// Rotation
 		if (rotate) {
 			baseObject.transform.localRotation = Quaternion.AngleAxis (1, Vector3.up) * baseObject.transform.localRotation;
+		}
+
+		// Scale
+		if(scale) {
+			// get the position of the camera when the user hits the scale button
+			// if the user increases their distance (x/y val) from the object, increase size
+			// if the user decreases their distance fromt he object, decrease size
+
+//			cameraPosition = Control.cameraPositionAtScaleButtonTap;
+			GameObject camera = GameObject.Find("ARCamera");
+			cameraPosition = camera.transform.position;
+//			Debug.Log("cameraPosition: " + cameraPosition);
+			objScale = cameraPosition.y / 100.0F;
+			baseObject.transform.localScale = new Vector3 (objScale, objScale, objScale);
+
+			// apply scale limitations
+//			if(baseObject.transform.localScale.y == 0.0f) {
+//				baseObject.transform.localScale = new Vector3 (0.5f, 0.5f, 0.5f);
+//			}
+//
+//			if(baseObject.transform.localScale.y == 5.0f) {
+//				baseObject.transform.localScale = new Vector3 (5.0f, 5.0f, 5.0f);
+//			}
+//			baseObject.transform.localScale += new Vector3 (0.01f, 0.01f, 0.01f);
 		}
 
 	}
@@ -110,19 +139,19 @@ public class Manipulate : MonoBehaviour
 			
 			if (isSelected == true ) {
 				
-				HighlightRed();
+				Select();
 				Control.selected = true;
 			}
 			
 			if (isSelected == false) {
 				
-				RemoveHighlight();
+				Deselect();
 				Control.selected = false;
 			}
 		}
 	}
 	
-	void HighlightRed(){
+	void Select(){
 		
 //		meshRenderer.material = Color.green;
 		meshRenderer.material = greenMaterial;
@@ -130,7 +159,7 @@ public class Manipulate : MonoBehaviour
 		Debug.Log("Object selected.");
 	}
 	
-	void RemoveHighlight(){
+	void Deselect(){
 		
 //		meshRenderer.material = originalMaterial;
 //		renderer.material = defaultMaterial;
