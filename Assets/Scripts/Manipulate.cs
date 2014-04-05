@@ -23,7 +23,7 @@ public class Manipulate : MonoBehaviour
 	bool selectMode = false;
 	
 	GameObject baseObject;
-	string obj_name;
+	public static string obj_name;
 
 	public Material greenMat;
 
@@ -134,7 +134,19 @@ public class Manipulate : MonoBehaviour
 
 		if(selectMode) {
 			Debug.Log("Object " + obj_name + "selected.");
-			
+
+			if(obj_name == "Sphere") {
+//				Workspace.sphereSelected = true;
+			}
+//			
+//			if(isSelected) {
+//				Deselect();
+//				Control.selected = false;
+//			} else {
+//				Select();
+//				Control.selected = true;
+//			}
+
 			isSelected = !isSelected;
 			
 			if (isSelected == true ) {
