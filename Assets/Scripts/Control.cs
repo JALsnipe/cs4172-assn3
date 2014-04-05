@@ -1,7 +1,22 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Select : MonoBehaviour {
+public class Control : MonoBehaviour {
+
+	// translate vars
+	bool translate = false;
+	public GUIText message = null;
+	private Transform pickedObject = null;
+	private Vector3 lastPlanePoint;
+
+	bool scale;
+	bool rotate;
+
+	// selection
+	static public bool selected;
+	private Ray m_Ray;
+	private RaycastHit m_RayCastHit;
+	private TouchableObject m_CurrentTouchableObject;
 
 	// GUI
 	static public bool render = false;
@@ -9,10 +24,8 @@ public class Select : MonoBehaviour {
 	private GUIStyle myStyle;
 	
 	Rect textArea = new Rect(890,0,Screen.width, Screen.height);
-
+	
 	public Material defaultMaterial;
-
-	bool selectMode = false;
 
 	// Use this for initialization
 	void Start () {
@@ -22,21 +35,24 @@ public class Select : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		// Select and object
-		int touchCorrection = 1;
-		
-		RaycastHit hit = new RaycastHit();
-		for (int i = 0; i+touchCorrection < Input.touchCount; ++i) {
-			if (Input.GetTouch(i).phase.Equals(TouchPhase.Began)) {
-				// Construct a ray from the current touch coordinates
-				Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(i).position);
-				if (Physics.Raycast(ray, out hit)) {
-					hit.transform.gameObject.SendMessage("OnMouseDown");
-				}
-			}
+		// Selection handeled in Manipulate.cs
+		if (selected) {
+			ShowWindow();
 		}
-		
+
+		if (!selected) {
+			HideWindow();
+		}
+
+		// Translate
+		if (translate) {
+			// translation handled by Translation.cs
+			Manipulate.translate = true;
+		} else {
+			Manipulate.translate = false;
+		}
 	}
+
 
 	public void ShowWindow() {
 		render = true;
@@ -62,11 +78,11 @@ public class Select : MonoBehaviour {
 			}
 			
 			if (Scale.translate) {
-				GUI.Label(textArea, "Rotate");
+				GUI.Label(textArea, "Translate");
 			}
 			
 			if (Scale.scale) {
-				GUI.Label(textArea, "Rotate");
+				GUI.Label(textArea, "Scale");
 			}
 		}
 	}
@@ -74,6 +90,12 @@ public class Select : MonoBehaviour {
 	public void DoMyWindow(int windowID) {
 		if (GUI.Button (new Rect (10, 20, 280, 120), "Translate", myStyle)) {
 			Debug.Log("Hit Translate");
+
+			if(translate) {
+				translate = false;
+			} else {
+				translate = true;
+			}
 		}
 		
 		if (GUI.Button (new Rect (10, 150, 280, 120), "Scale", myStyle)) {
