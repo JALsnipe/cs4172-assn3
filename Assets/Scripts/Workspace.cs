@@ -44,7 +44,7 @@ public class Workspace : MonoBehaviour, ITrackableEventHandler {
 			myModelTrf.parent = mTrackableBehaviour.transform;             
 			myModelTrf.localPosition = new Vector3(0f, 0f, 0f);
 			myModelTrf.localRotation = Quaternion.identity;
-			myModelTrf.localScale = new Vector3(0.0005f, 0.0005f, 0.0005f);
+			myModelTrf.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 			
 			myModelTrf.gameObject.active = true;
 		}
