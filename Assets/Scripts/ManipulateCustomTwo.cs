@@ -37,7 +37,7 @@ public class ManipulateCustomTwo : MonoBehaviour
 		
 		Color green  = new Color(255.0f,0.0f,0.0f, 0.5f);
 		greenMaterial = new Material(Shader.Find("Transparent/Diffuse"));
-		greenMaterial.color  = green;
+		greenMaterial.color = green;
 		
 	}
 	
@@ -161,7 +161,7 @@ public class ManipulateCustomTwo : MonoBehaviour
 		
 		//		meshRenderer.material = Color.green;
 		meshRenderer.material = greenMaterial;
-		//		meshRenderer.material = greenMat;
+//				meshRenderer.material = greenMat;
 		Debug.Log("Object selected.");
 	}
 	

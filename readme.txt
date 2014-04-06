@@ -16,21 +16,33 @@ Project Title: cs4172-assn3
 Scene Title: arscene.unity
 
 Directory Overview:
+targets/ - folder containing printable image targets
 Assets/ - contains all project assets
 Assets/_Scenes/ - contains a single scene file, SolarSystem.unity
 Assets/Models/ - contains all models used
 Assets/Scripts/ - contains all necessary C# script files
-[more?]
+Assets/Qualcomm Augmented Reality - AR SDK
 
 Special Instructions:
 None, just build and run.  App should run in landscape mode.
 
-Instructions:
+Preparing Targets:
+Just print the Ground target (gravel) and the Main target (Woodchips) located
+in the /targets/ folder in my project directory.  Do not scale images to fit-
+to-the-page, print them at their current size.
+
+Video Demo:
+
+App Instructions:
 App should be straightforward.  Object controls appear on the right side of the
 screen as objects are selected to be manipulated.
 
 Missing features:
--
+-delete working for all objects except cube (error in scale.cs?)
+-cube and sphere manipulation linked together
+-workspace only supports sphere
+-can clone objects, but can't manipulate them
+-selection textures work in Play Mode but not on Android build (that's why you see pink)
 
 Bugs in Code:
 Nothing that would halt compliation.
@@ -42,13 +54,25 @@ http://www.turbosquid.com/3d-models/free-simple-pumpkin/315902
 grey pumpkin:
 http://www.turbosquid.com/3d-models/free-obj-mode-halloween-pumpkin/763410
 
-better tool target (gravel):
+Ground target (gravel):
 http://www.jpl.nasa.gov/apps/images/3dtarget.pdf
+(local path: targets/gravel_tool.png)
 
-main target (woodchips):
+Main target (Woodchips):
+https://developer.vuforia.com/sites/default/files/sample-apps/targets/imagetargets_targets.pdf
+(local path: targets/chipsc.png)
 
-Video Demo:
+Code Sources:
+I used code snippets from these pages to help facilitate object selection, the workspace, and translation:
+http://answers.unity3d.com/questions/297066/drag-object-not-working-in-vuforia-.html
+https://developer.vuforia.com/forum/unity-3-extension-technical-discussion/how-add-touch-listener-3d-object-unity
+https://developer.vuforia.com/forum/faq/unity-how-can-i-dynamically-attach-my-3d-model-image-target
 
+Written Description Sources:
+I used these written sources to help me look up 3D object manipulation techniques and terminology:
+-Class slides
+-D. Bowman, E. Kruijff, J. LaViola Jr., and I. Poupyrev. 3D User Interfaces: Theory and Practice. Addison-Wesley, Boston, 2005, ISBN 0-201-75867-9.
+-http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.126.2857&rep=rep1&type=pdf
 
 
 ---notes---
@@ -87,7 +111,3 @@ Still need to figure out translation
 
 like using virtualbuttons, but some may require 3 hands if i do the tap and hold approach.  try toggle?
 
-bugs:
-delete working for all except cube
-workspace only supports sphere
-need to be able to clone objects

@@ -31,7 +31,8 @@ public class Control : MonoBehaviour {
 	public Material defaultMaterial;
 
 	// clone
-	public GameObject theObject;
+//	public GameObject sphere;
+	public Transform prefab;
 
 	// Use this for initialization
 	void Start () {
@@ -130,6 +131,12 @@ public class Control : MonoBehaviour {
 
 		if (GUI.Button (new Rect (10, 410, 280, 120), "Clone", myStyle)) {
 			Debug.Log("Hit Clone");
+
+			Transform t = (Transform) Instantiate(prefab, GameObject.Find("Sphere").transform.position, GameObject.Find("Sphere").transform.rotation);
+//			t.transform.localScale = GameObject.Find("Sphere").transform.localScale;
+			t.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+			Debug.Log("t.transform.localScale: " + t.transform.localScale);
+
 
 
 			// this crashes
