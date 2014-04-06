@@ -23,6 +23,7 @@ public class Workspace : MonoBehaviour, ITrackableEventHandler {
 	// Update is called once per frame
 	void Update ()
 	{
+
 	}
 	
 	public void OnTrackableStateChanged(
@@ -37,8 +38,7 @@ public class Workspace : MonoBehaviour, ITrackableEventHandler {
 	}
 	private void OnTrackingFound()
 	{
-		if (myModelPrefab != null)
-		{
+		if (myModelPrefab != null) {
 			Transform myModelTrf = GameObject.Instantiate(myModelPrefab) as Transform;
 			
 			myModelTrf.parent = mTrackableBehaviour.transform;             

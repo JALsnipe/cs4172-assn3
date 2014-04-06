@@ -30,6 +30,9 @@ public class Control : MonoBehaviour {
 	
 	public Material defaultMaterial;
 
+	// clone
+	public GameObject theObject;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -123,6 +126,56 @@ public class Control : MonoBehaviour {
 			} else {
 				Manipulate.rotate = true;
 			}
+		}
+
+		if (GUI.Button (new Rect (10, 410, 280, 120), "Clone", myStyle)) {
+			Debug.Log("Hit Clone");
+
+
+			// this crashes
+//			Transform myModelTrf = GameObject.Instantiate(gameObject) as Transform;
+//			
+//			myModelTrf.parent = gameObject.transform;             
+//			myModelTrf.localPosition = new Vector3(0f, 0f, 0f);
+//			myModelTrf.localRotation = Quaternion.identity;
+//			myModelTrf.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+//			
+//			myModelTrf.gameObject.active = true;
+
+
+
+//			GameObject instance = (GameObject)Instantiate(gameObject, transform.position, transform.rotation);
+
+
+//			GameObject clone = (GameObject)Instantiate(Resources.Load("Sphere"));
+//			Instantiate(clone, new Vector3(0, 0, 0));
+//
+//			Transform prefab;
+//			Instantiate(prefab, new Vector3(0, 0, 0), Quaternion.identity) as Transform;
+
+//			GameObject clone = (GameObject)Instantiate(Resources.Load("Sphere"));
+//			Instantiate(theObject, Vector3(transform.position.x, transform.position.y, transform.localPosition.z + 1), transform.rotation);
+
+
+//			GameObject clone;
+//			clone = Instantiate(prefab, position, transform.rotation);
+//			clone.velocity = transform.TransformDirection( Vector3 (0, 1,     speed));
+//			clone.transform.parent = transform;
+//			clone.transform.localPosition = position;
+
+//			if(Manipulate.rotate) {
+//				Manipulate.rotate = false;
+//			} else {
+//				Manipulate.rotate = true;
+//			}
+		}
+
+		if (GUI.Button (new Rect (10, 540, 280, 120), "Delete", myStyle)) {
+			Debug.Log("Hit Delete");
+
+			selected = false;
+			Destroy(GameObject.Find("Sphere"));
+
 		}
 		
 	}

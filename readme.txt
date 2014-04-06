@@ -88,5 +88,6 @@ Still need to figure out translation
 like using virtualbuttons, but some may require 3 hands if i do the tap and hold approach.  try toggle?
 
 bugs:
+delete working for all except cube
 workspace only supports sphere
-need to be able to clone objects and delete objects
+need to be able to clone objects

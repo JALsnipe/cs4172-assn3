@@ -124,6 +124,29 @@ public class ControlCube : MonoBehaviour {
 				ManipulateCube.rotate = true;
 			}
 		}
+
+		if (GUI.Button (new Rect (10, 410, 280, 120), "Clone", myStyle)) {
+			Debug.Log("Hit Clone");
+			
+			// this crashes
+			//			Transform myModelTrf = GameObject.Instantiate(gameObject) as Transform;
+			//			
+			//			myModelTrf.parent = gameObject.transform;             
+			//			myModelTrf.localPosition = new Vector3(0f, 0f, 0f);
+			//			myModelTrf.localRotation = Quaternion.identity;
+			//			myModelTrf.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+			//			
+			//			myModelTrf.gameObject.active = true;
+
+		}
+		
+		if (GUI.Button (new Rect (10, 540, 280, 120), "Delete", myStyle)) {
+			Debug.Log("Hit Delete");
+			
+			selected = false;
+			Destroy(GameObject.Find("Cube"));
+			
+		}
 		
 	}
 }
