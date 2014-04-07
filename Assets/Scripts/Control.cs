@@ -133,9 +133,12 @@ public class Control : MonoBehaviour {
 			Debug.Log("Hit Clone");
 
 			Transform t = (Transform) Instantiate(prefab, GameObject.Find("Sphere").transform.position, GameObject.Find("Sphere").transform.rotation);
-//			t.transform.localScale = GameObject.Find("Sphere").transform.localScale;
+			t.transform.localScale = GameObject.Find("Sphere").transform.localScale;
 			t.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
 			Debug.Log("t.transform.localScale: " + t.transform.localScale);
+
+//			Transform t = (Transform)Instantiate(prefab, new Vector3(0,0,0), new Quaternion(1,10,11,100));
+
 
 
 

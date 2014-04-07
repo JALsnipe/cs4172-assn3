@@ -29,6 +29,9 @@ public class ControlCustomOne : MonoBehaviour {
 	Rect textArea = new Rect(890,0,Screen.width, Screen.height);
 	
 	public Material defaultMaterial;
+
+	// Clone
+	public Transform prefab;
 	
 	// Use this for initialization
 	void Start () {
@@ -127,6 +130,11 @@ public class ControlCustomOne : MonoBehaviour {
 
 		if (GUI.Button (new Rect (10, 410, 280, 120), "Clone", myStyle)) {
 			Debug.Log("Hit Clone");
+
+			Transform t = (Transform) Instantiate(prefab, GameObject.Find("cylinder1_default").transform.position, GameObject.Find("cylinder1_default").transform.rotation);
+			t.transform.localScale = GameObject.Find("cylinder1_default").transform.localScale;
+			t.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+			Debug.Log("t.transform.localScale: " + t.transform.localScale);
 			
 			// this crashes
 			//			Transform myModelTrf = GameObject.Instantiate(gameObject) as Transform;
